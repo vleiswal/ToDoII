@@ -25,7 +25,7 @@ class TodoListViewController: UITableViewController {
         //print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         // Do any additional setup after loading the view, typically from a nib
      
-       // loadItems()
+        loadItems()
     }
     
     //MARK - Tableview Datasource Methodes
@@ -102,17 +102,15 @@ class TodoListViewController: UITableViewController {
         
     }
     
-//    func loadItems() {
-//
-//        if let data = try? Data(contentsOf: dataFilePath!) {
-//            let decoder = PropertyListDecoder()
-//            do {
-//                itemArray = try decoder.decode([Item].self, from: data)
-//            } catch {
-//                print("Error in decoding data, \(error)")
-//            }
-//        }
-//    }
+    func loadItems() {
+
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+           print ("Error Reading context, \(error)")
+        }
+    }
 }
 
 
