@@ -114,6 +114,7 @@ class TodoListViewController: UITableViewController {
         } catch {
            print ("Error Reading context, \(error)")
         }
+        tableView.reloadData()
     }
     
    
